@@ -6,9 +6,6 @@
 # Whether or not is a fresh session
 set -g __pure_fresh_session 1
 
-# Deactivate the default virtualenv prompt so that we can add our own
-set -gx VIRTUAL_ENV_DISABLE_PROMPT 1
-
 # Symbols
 
 __pure_set_default pure_symbol_prompt "❯"
@@ -17,6 +14,7 @@ __pure_set_default pure_symbol_git_up_arrow "⇡"
 __pure_set_default pure_symbol_git_dirty "*"
 __pure_set_default pure_symbol_horizontal_bar "—"
 __pure_set_default pure_symbol_stash "⚑"
+__pure_set_default pure_symbol_node "⬢"
 
 # Colors
 
@@ -130,11 +128,14 @@ function fish_prompt
 
     # show git stash
     if test (count (command git stash list --no-decorate ^/dev/null)) != 0
-      set git_stash $pure_symbol_stash
+      set git_stash "$pure_symbol_stash"
     end
 
+    #show node version
+    set -l node_version (command node -v ^/dev/null)
+
     # Format Git prompt output
-    set prompt $prompt "$pure_color_gray$git_branch_name$git_dirty$pure_color_normal$pure_color_cyan$git_arrows $pure_color_cyan$git_stash$pure_color_normal "
+    set prompt $prompt "$pure_color_gray$git_branch_name$git_dirty$pure_color_normal$pure_color_cyan$git_arrows $pure_color_cyan$git_stash$pure_color_normal$pure_color_green $pure_symbol_node$node_version "
   end
 
   if test $pure_user_host_location -ne 1
@@ -145,14 +146,9 @@ function fish_prompt
   if test -n "$CMD_DURATION"
     set command_duration (__format_time $CMD_DURATION $pure_command_max_exec_time)
   end
-  set prompt $prompt "$pure_color_yellow$command_duration$pure_color_normal\n"
+  set prompt $prompt "$pure_color_yellow$command_duration$pure_color_normal"
 
-  # Show python virtualenv name (if activated)
-  if test -n "$VIRTUAL_ENV"
-    set prompt $prompt $pure_color_gray(basename "$VIRTUAL_ENV")"$pure_color_normal "
-  end
-
-  set prompt $prompt "$color_symbol$pure_symbol_prompt$pure_color_normal "
+  set prompt $prompt "\n$color_symbol$pure_symbol_prompt$pure_color_normal "
 
   echo -e -s $prompt
 
