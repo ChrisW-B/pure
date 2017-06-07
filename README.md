@@ -14,7 +14,7 @@ Via [cURL](https://curl.haxx.se):
 
 ```sh
 $ # Download the installer to `/tmp`
-$ curl -Ls https://raw.github.com/rafaelrinaldi/pure/master/installer.fish > /tmp/pure_installer.fish
+$ curl -Ls https://raw.github.com/ChrisW-B/pure/master/installer.fish > /tmp/pure_installer.fish
 $ # Source and trigger the installer
 $ source /tmp/pure_installer.fish; and install_pure
 ```
@@ -22,7 +22,7 @@ $ source /tmp/pure_installer.fish; and install_pure
 ### [Fisherman](http://fisherman.sh)
 
 ```fish
-$ fisher rafaelrinaldi/pure
+$ fisher ChrisW-B/pure
 ```
 
 ### [Oh My Fish!](https://github.com/oh-my-fish)
@@ -44,6 +44,8 @@ $ omf install pure
 * Display username and host when in an SSH session
 * Display duration of failed process (defaults to `5`)
 * Display python virtualenv name if activated
+
+* This version also adds a flag if theres something in the stash
 
 ## Configuration
 
@@ -91,3 +93,5 @@ Kudos to all our awesome [:yellow_heart: contributors :yellow_heart:](../..//gra
 ## License
 
 MIT © [Rafael Rinaldi](http://rinaldi.io)
+
+customized by [Chris Barry](https://chriswbarry.com)
