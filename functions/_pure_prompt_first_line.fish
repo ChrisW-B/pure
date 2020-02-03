@@ -6,7 +6,7 @@ function _pure_prompt_first_line \
     if not type --quiet --no-functions git  # exit if git is not available
         return $FAILURE
     end
-
+    set --local prompt_nodeenv (_pure_prompt_nodeenv)
     set --local prompt_ssh (_pure_prompt_ssh)
     set --local prompt_git (_pure_prompt_git)
     set --local prompt_command_duration (_pure_prompt_command_duration)
@@ -24,7 +24,8 @@ function _pure_prompt_first_line \
                 $current_folder \
                 $prompt_git \
                 $prompt_ssh \
-                $prompt_command_duration
+                $prompt_command_duration \
+                $prompt_nodeenv
     else
         set prompt_components \
                 $prompt_ssh \
