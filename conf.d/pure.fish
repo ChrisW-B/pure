@@ -1,5 +1,9 @@
 set --global pure_version 3.5.0 # used for bug report
 
+# Show system time
+_pure_set_default pure_show_system_time false
+_pure_set_default pure_color_system_time pure_color_mute
+
 # Base colors
 _pure_set_default pure_color_primary blue
 _pure_set_default pure_color_info cyan
